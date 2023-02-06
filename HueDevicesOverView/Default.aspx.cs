@@ -16,65 +16,21 @@ namespace HueDevicesOverView
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            BibleStuff();
-
             string hueIp = ConfigurationManager.AppSettings["hueip"];
             string hueAPIKey = ConfigurationManager.AppSettings["hueapikey"];
-
 
             List<OverView> ovs = new List<OverView>();
 
             ovs.AddRange(GetJson("http://" + hueIp + "/api/" + hueAPIKey + "/lights"));
             ovs.AddRange(GetJson("http://" + hueIp + "/api/" + hueAPIKey + "/groups"));
             ovs.AddRange(GetJson("http://" + hueIp + "/api/" + hueAPIKey + "/sensors"));
-           // ovs.AddRange(GetJson("http://192.168.1.133/api/UJOyatciz47HUb-oIxOc7K4oIkJBGae4ZRqhWdag/groups")); 
-            //ovs.AddRange(GetJson("http://192.168.1.133/api/UJOyatciz47HUb-oIxOc7K4oIkJBGae4ZRqhWdag/sensors"));
+            // ovs.AddRange(GetJson("http://192.168.1.133/api/apikey/groups")); 
+            //ovs.AddRange(GetJson("http://192.168.1.133/api/apikey/sensors"));
             GridView1.DataSource = ovs;
             GridView1.DataBind();
         }
 
-        private void BibleStuff()
-        {
-            //https://luther.k-r.ch/books
-            string url= "https://luther.k-r.ch/books";
-
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
-            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-            httpWebRequest.ContentType = "application/json";
-            httpWebRequest.Method = "GET";
-
-            List<string> data = new List<string>();
-
-            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-            {
-                var result = streamReader.ReadToEnd();
-                //************** testing ******************
-                //dynamic stuff = JsonConvert.DeserializeObject(result);
-
-                //JObject all = JObject.Parse(result);
-                //List<JToken> objects = new List<JToken>();
-                //objects = all["data"].Children().ToList();
-                //foreach (var x in all)
-                //{
-                //    string name = x.Key;
-                //    JToken value = x.Value;
-                //}
-
-                JObject obj = JObject.Parse(result);
-                var attributes = obj["data"];//list with jtokens
-
-                foreach (var attributeProperty in attributes)
-                {
-                    var attribute = attributeProperty;
-                    var test = attributeProperty.First();
-                    var my_data = attribute["book"];
-                    var bookValue = my_data.Value<string>();//dette er navnet på boka, gen etc
-                    data.Add(bookValue);
-                }
-            }
-        }
-
-        private List<OverView> GetJson(string url)//http://192.168.1.133/api/UJOyatciz47HUb-oIxOc7K4oIkJBGae4ZRqhWdag/groups
+        private List<OverView> GetJson(string url)//http://192.168.1.133/api/apikey/groups
         {
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
             var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
@@ -114,10 +70,8 @@ namespace HueDevicesOverView
 
                     ovs.Add(ov);
                 }
-
             }
             return ovs;
-
         }
     }
 

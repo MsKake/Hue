@@ -27,7 +27,7 @@ namespace HueDevicesOverView
             ovs.AddRange(GetJson("http://" + hueIp + "/api/" + hueAPIKey + "/lights"));
             ovs.AddRange(GetJson("http://" + hueIp + "/api/" + hueAPIKey + "/groups"));
             ovs.AddRange(GetJson("http://" + hueIp + "/api/" + hueAPIKey + "/sensors"));
-           // ovs.AddRange(GetJson("http://192.168.1.133/api/UJOyatciz47HUb-oIxOc7K4oIkJBGae4ZRqhWdag/groups"));
+           // ovs.AddRange(GetJson("http://192.168.1.133/api/UJOyatciz47HUb-oIxOc7K4oIkJBGae4ZRqhWdag/groups")); 
             //ovs.AddRange(GetJson("http://192.168.1.133/api/UJOyatciz47HUb-oIxOc7K4oIkJBGae4ZRqhWdag/sensors"));
             GridView1.DataSource = ovs;
             GridView1.DataBind();

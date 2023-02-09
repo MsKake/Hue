@@ -16,6 +16,10 @@ namespace HueDevicesOverView
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            Hue hue = new Hue();
+            hue.TurnOnLightsInGroup(2);
+
             string hueIp = ConfigurationManager.AppSettings["hueip"];
             string hueAPIKey = ConfigurationManager.AppSettings["hueapikey"];
 

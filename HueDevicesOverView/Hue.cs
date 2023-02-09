@@ -12,7 +12,7 @@ namespace HueDevicesOverView
     {
         public bool[] GetGroupStateByGroupId(int groupId)//all_on any_on true/false
         {
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.1.133/api/apikey/groups/" + groupId);//all lights in a group
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.50.162/api/nlVjrXsQZJVmWIteve5jtSdBDHyiPlEEFPi-mwbi/groups/" + groupId);//all lights in a group
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "GET";
             bool[] state = new bool[2];
@@ -54,7 +54,7 @@ namespace HueDevicesOverView
         /// <param name="groupId"></param>
         public void TurnOnLightsInGroup(int groupId)
         {
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.1.133/api/apikey/groups/" + groupId + "/action");//all lights in a group
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.50.162/api/nlVjrXsQZJVmWIteve5jtSdBDHyiPlEEFPi-mwbi/groups/" + groupId + "/action");//all lights in a group
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "PUT";
 
